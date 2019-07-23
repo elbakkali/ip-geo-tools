@@ -1,6 +1,7 @@
 <?php 
 
 namespace GeoTools;
+use \GeoTools\Constants\Countries;
 
 class GeoTools
 {
@@ -9,7 +10,7 @@ class GeoTools
      * @param  bool $allowLowerCase
      * @return bool
      */
-    public static function isValidCountryCode($countryCode, $allowLowerCase = false)
+    public function isValidCountryCode($countryCode, $allowLowerCase = false)
     {
         return (new Validators\Country())->isValidCountryCode($countryCode, $allowLowerCase);
     }
@@ -19,8 +20,23 @@ class GeoTools
      * @param  bool $ipv6
      * @return bool
      */
-    public static function isValidIpAddress($ip, $ipv6 = false)
+    public function isValidIpAddress($ip, $ipv6 = false)
     {
         return (new Validators\Ip())->isValidIpAddress($ip, $ipv6);
+    }
+
+    /**
+     * @param  string $countryCode
+     * @throws Exception
+     * @return string
+     */
+    public function getCountryByCountryCode($countryCode) {
+        $countryCode = strtoupper($countryCode);
+
+        if (!$this->isValidCountryCode($countryCode)) {
+            throw new \Exception('Invalid country code');
+        }
+
+        return Countries::COUNTRIES_LIST[$countryCode];
     }
 }
