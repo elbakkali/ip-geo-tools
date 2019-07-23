@@ -4,6 +4,11 @@ use \GeoTools\Constants\Countries;
 
 class Country
 {
+    /**
+     * @param  string $countryCode
+     * @param  bool $allowLowerCase
+     * @return bool
+     */
     public function isValidCountryCode($countryCode, $allowLowerCase = false) {
         $countryCode = $allowLowerCase ? strtoupper($countryCode) : $countryCode;
 

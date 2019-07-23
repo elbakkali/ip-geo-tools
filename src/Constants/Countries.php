@@ -4,6 +4,7 @@ namespace Geotools\Constants;
 
 class Countries
 {
+    /* @var array */ 
     const COUNTRIES_LIST = [
         "AF" => "Afghanistan",
         "AL" => "Albania",
